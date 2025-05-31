@@ -64,6 +64,7 @@ public class MainWindow extends javax.swing.JFrame {
         plPregunta = new javax.swing.JPanel();
         btnSi = new javax.swing.JButton();
         btnNo = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -268,6 +269,14 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
+        btnLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,6 +284,9 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -286,21 +298,18 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnProcesar))
                             .addComponent(txtIngresoMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCreditoSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNumeroHijos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
-                        .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(254, Short.MAX_VALUE))
             .addComponent(plPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnProcesar)
-                .addGap(275, 275, 275))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +341,9 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtCreditoSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProcesar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProcesar)
+                    .addComponent(btnLimpiar))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -391,6 +402,29 @@ public class MainWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnNoActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtNombre.setText("");
+        txtFechaNacimiento.setText("");
+        cmbGenero.setSelectedIndex(0);
+        txtNumeroHijos.setText("");
+        txtIngresoMensual.setText("");
+        txtCreditoSolicitado.setText("");
+        txtNombre.setEnabled(true);
+        txtFechaNacimiento.setEnabled(true);
+        cmbGenero.setEnabled(true);
+        txtNumeroHijos.setEnabled(true);
+        txtIngresoMensual.setEnabled(true);
+        txtCreditoSolicitado.setEnabled(true);
+        txtnNombreCliente.setText("");
+        txtnFechaNacimiento.setText("");
+        txtnGeneroCliente.setText("");
+        txtnNumeroHijos.setText("");
+        txtnIngresoMensual.setText("");
+        txtnCreditoSolicitado.setText("");
+        txtnEstadoCredito.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     private void procesarDatosCliente(){
         String nombreCliente = txtNombre.getText();
         String fechaNacimiento = txtFechaNacimiento.getText();
@@ -415,7 +449,7 @@ public class MainWindow extends javax.swing.JFrame {
         txtnIngresoMensual.setText(String.valueOf(solicitud.getIngresoMensual()));
         txtnCreditoSolicitado.setText(String.valueOf(solicitud.getCreditoSolicitado()));
         txtnEstadoCredito.setText(resultado.otorgadoraCredito(solicitud));
-        plPregunta.setVisible(true);
+        /*plPregunta.setVisible(true);*/
     }
     /**
      * @param args the command line arguments
@@ -442,6 +476,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnProcesar;
     private javax.swing.JButton btnSi;
